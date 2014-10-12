@@ -1,6 +1,7 @@
 package io.aedifex.processor;
 
 
+import io.aedifex.annotation.AedifexIgnore;
 import io.aedifex.generation.ClassGenerator;
 import io.aedifex.generation.ClassProperties;
 import io.aedifex.generation.ClassWriter;
@@ -56,7 +57,7 @@ public class AedifexProcessor extends AbstractProcessor {
         List<FieldProperty> fieldProperties = new ArrayList<FieldProperty>();
 
         for (Element element : e.getEnclosedElements()) {
-            if (element.getKind().isField() && !element.getModifiers().contains(Modifier.STATIC)) {
+            if (shouldCreateBuilderMethod(element)) {
                 fieldProperties.add(
                         FieldProperty.of(element.toString(), element.asType().toString())
                 );
@@ -67,6 +68,16 @@ public class AedifexProcessor extends AbstractProcessor {
                 classElement.getSimpleName().toString(),
                 packageElement.getQualifiedName().toString(),
                 fieldProperties);
+    }
+
+    private boolean shouldCreateBuilderMethod(Element element) {
+        return element.getKind().isField()
+                && !element.getModifiers().contains(Modifier.STATIC)
+                && doesNotHaveIgnoreAnnotation(element);
+    }
+
+    private boolean doesNotHaveIgnoreAnnotation(Element element) {
+        return element.getAnnotation(AedifexIgnore.class) == null;
     }
 }
 
