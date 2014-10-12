@@ -9,7 +9,8 @@ public final class ClassGenerator {
 
         final StringBuilder source = new StringBuilder();
         source.append("package ").append(classProperties.getPackageName()).append(";\n\n");
-        source.append("public class ").append(classProperties.getClassName()).append("_ {\n");
+        source.append("public final class ").append(classProperties.getClassName()).append("_ {\n");
+        source.append("\tprivate ").append(classProperties.getClassName()).append("_ {}\n");
         source.append("}\n\n");
 
         return source.toString();
