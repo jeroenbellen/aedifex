@@ -11,10 +11,8 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
-import javax.lang.model.util.ElementFilter;
 import javax.tools.Diagnostic;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -58,7 +56,7 @@ public class AedifexProcessor extends AbstractProcessor {
         List<FieldProperty> fieldProperties = new ArrayList<FieldProperty>();
 
         for (Element element : e.getEnclosedElements()) {
-            if (element.getKind().isField()) {
+            if (element.getKind().isField() && !element.getModifiers().contains(Modifier.STATIC)) {
                 fieldProperties.add(
                         FieldProperty.of(element.toString(), element.asType().toString())
                 );
