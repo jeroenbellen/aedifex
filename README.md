@@ -5,13 +5,17 @@ Aedifex
 
 Example:
 
-    package example;
-    import io.aedifex.annotation.Aedifex;
+
+    import io.aedifex.annotation.Aedifex;  
+    import io.aedifex.annotation.AedifexIgnore;
 
     @Aedifex
     public class Foo {
-	    private String bar;
+        private String bar;
+        @AedifexIgnore
+        private String doNotAdd;
     }
+
 
 Will create a builder:
 
