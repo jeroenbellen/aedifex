@@ -1,5 +1,7 @@
 package io.aedifex.generation;
 
+import org.stringtemplate.v4.ST;
+
 public final class ClassGenerator {
 
     private ClassGenerator() {
@@ -7,26 +9,42 @@ public final class ClassGenerator {
 
     public static String generate(ClassProperties classProperties) {
 
-        final StringBuilder source = new StringBuilder();
-        source.append("package ").append(classProperties.getPackageName()).append(";\n\n");
-        source.append("public final class ").append(classProperties.getClassName()).append("_ {\n\n");
-        source.append("\tprivate ").append(classProperties.getClassName()).append("_(){}\n\n");
-        for (FieldProperty field : classProperties.getFields()) {
-            source.append(createMethod(classProperties, field));
-        }
-        source.append("\n}\n\n");
 
-        return source.toString();
+        final ST st = new ST("package <packageName>;\n" +
+                "\n" +
+                "import net.vidageek.mirror.dsl.Mirror;\n" +
+                "\n" +
+                "public final class <className> {\n" +
+                "\n" +
+                "    private final <originalClassName> inst;\n" +
+                "\n" +
+                "    private <className>(){\n" +
+                "        inst = new Mirror().on(<originalClassName>.class).invoke().constructor().withoutArgs();\n" +
+                "    }\n" +
+                "\n" +
+                "    public static <className> with() {\n" +
+                "        return new <className>();\n" +
+                "    }\n" +
+                "\n" +
+                "    public <originalClassName> build() {\n" +
+                "        return inst;\n" +
+                "    }\n" +
+                "<fields:{field|" +
+                "\n\n\tpublic <className> <field.name>(<field.type> <field.name>) {\n" +
+                "\t\tnew Mirror().on(inst).set().field(\"<field.name>\").withValue(<field.name>);\n" +
+                "\t\treturn this;\n" +
+                "\t\\}" +
+                "}>" +
+                "\n" +
+                "}\n");
+
+        st.add("className", classProperties.getClassName() + "_");
+        st.add("originalClassName", classProperties.getClassName());
+        st.add("packageName", classProperties.getPackageName());
+        st.add("fields", classProperties.getFields());
+        return st.render();
+
     }
 
-    private static String createMethod(ClassProperties classProperties, FieldProperty field) {
-        return String.format("\n\tpublic %s %s(%s %s) {" +
-                        "\n\t\treturn this;" +
-                        "\n\t}",
-                classProperties.getClassName() + "_",
-                field.getName(),
-                field.getType(),
-                field.getName()
-        );
-    }
+
 }
