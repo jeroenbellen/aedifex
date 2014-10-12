@@ -13,7 +13,7 @@ public final class ClassWriter {
     public static void write(ProcessingEnvironment processingEnvironment, ClassProperties classProperties, String source) {
         try {
             JavaFileObject jfo = processingEnvironment.getFiler().createSourceFile(
-                    classProperties.getPackageName() + "." + classProperties.getClassName() + "_");
+                    getFullClassName(classProperties));
             final Writer writer = jfo.openWriter();
             writer.write(source);
             writer.close();
@@ -22,5 +22,14 @@ public final class ClassWriter {
             e.printStackTrace();
             // TODO do something
         }
+    }
+
+    private static String getFullClassName(ClassProperties classProperties) {
+        final StringBuilder toReturn = new StringBuilder();
+        if (classProperties.getPackageName() != null && !classProperties.getPackageName().equals("")) {
+            toReturn.append(classProperties.getPackageName()).append(".");
+        }
+        toReturn.append(classProperties.getClassName()).append("_");
+        return toReturn.toString();
     }
 }

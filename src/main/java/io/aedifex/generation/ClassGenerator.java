@@ -10,9 +10,8 @@ public final class ClassGenerator {
     public static String generate(ClassProperties classProperties) {
 
 
-        final ST st = new ST("package <packageName>;\n" +
-                "\n" +
-                "import net.vidageek.mirror.dsl.Mirror;\n" +
+        final ST st = new ST("<if(hasPackageName)>package <packageName>;<endif>" +
+                "\n\nimport net.vidageek.mirror.dsl.Mirror;\n" +
                 "\n" +
                 "public final class <className> {\n" +
                 "\n" +
@@ -41,6 +40,7 @@ public final class ClassGenerator {
         st.add("className", classProperties.getClassName() + "_");
         st.add("originalClassName", classProperties.getClassName());
         st.add("packageName", classProperties.getPackageName());
+        st.add("hasPackageName", classProperties.getPackageName() != null && !classProperties.getPackageName().equals(""));
         st.add("fields", classProperties.getFields());
         return st.render();
 
