@@ -13,7 +13,7 @@ public final class ClassWriter {
     public static void write(ProcessingEnvironment processingEnvironment, ClassProperties classProperties, String source) {
         try {
             JavaFileObject jfo = processingEnvironment.getFiler().createSourceFile(
-                    classProperties.getClassName() + "_");
+                    classProperties.getPackageName() + "." + classProperties.getClassName() + "_");
             final Writer writer = jfo.openWriter();
             writer.write(source);
             writer.close();
