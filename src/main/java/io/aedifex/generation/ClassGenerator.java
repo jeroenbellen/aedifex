@@ -1,49 +1,36 @@
 package io.aedifex.generation;
 
 import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
 
 public final class ClassGenerator {
+
+    private static final STGroup ST_GROUP = new STGroupFile("aedifex.stg");
 
     private ClassGenerator() {
     }
 
+
     public static String generate(ClassProperties classProperties) {
-
-
-        final ST st = new ST("<if(hasPackageName)>package <packageName>;<endif>" +
-                "\n\nimport net.vidageek.mirror.dsl.Mirror;\n" +
-                "\n" +
-                "public final class <className> {\n" +
-                "\n" +
-                "    private final <originalClassName> inst;\n" +
-                "\n" +
-                "    private <className>(){\n" +
-                "        inst = new Mirror().on(<originalClassName>.class).invoke().constructor().withoutArgs();\n" +
-                "    }\n" +
-                "\n" +
-                "    public static <className> with() {\n" +
-                "        return new <className>();\n" +
-                "    }\n" +
-                "\n" +
-                "    public <originalClassName> build() {\n" +
-                "        return inst;\n" +
-                "    }\n" +
-                "<fields:{field|" +
-                "\n\n\tpublic <className> <field.name>(<field.type> <field.name>) {\n" +
-                "\t\tnew Mirror().on(inst).set().field(\"<field.name>\").withValue(<field.name>);\n" +
-                "\t\treturn this;\n" +
-                "\t\\}" +
-                "}>" +
-                "\n" +
-                "}\n");
+        final ST st = getBuilderClassTemplate();
 
         st.add("className", "$" + classProperties.getClassName());
         st.add("originalClassName", classProperties.getClassName());
         st.add("packageName", classProperties.getPackageName());
-        st.add("hasPackageName", classProperties.getPackageName() != null && !classProperties.getPackageName().equals(""));
+        st.add("hasPackageName", hasPackage(classProperties));
         st.add("fields", classProperties.getFields());
+
         return st.render();
 
+    }
+
+    private static boolean hasPackage(ClassProperties classProperties) {
+        return classProperties.getPackageName() != null && !classProperties.getPackageName().equals("");
+    }
+
+    private static ST getBuilderClassTemplate() {
+        return ST_GROUP.getInstanceOf("builderClass");
     }
 
 

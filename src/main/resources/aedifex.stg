@@ -1,0 +1,28 @@
+builderClass(className, originalClassName, packageName, hasPackageName, fields) ::= <<
+<if(hasPackageName)>package <packageName>;<endif>
+
+import net.vidageek.mirror.dsl.Mirror;
+
+public final class <className> {
+
+    private final <originalClassName> inst;
+
+    private <className>(){
+        inst = new Mirror().on(<originalClassName>.class).invoke().constructor().withoutArgs();
+    }
+
+    public static <className> with() {
+        return new <className>();
+    }
+
+    public <originalClassName> build() {
+        return inst;
+    }
+<fields:{field|
+
+	public <className> <field.name>(<field.type> <field.name>) {
+		new Mirror().on(inst).set().field("<field.name>").withValue(<field.name>);
+		return this;
+	\}}>
+}
+>>

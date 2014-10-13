@@ -14,7 +14,8 @@ public class ClassGeneratorTest {
         final String generatedClass = ClassGenerator.generate(classProperties);
         assertThat(generatedClass)
                 .isEqualTo("package bar;\n" +
-                        "\nimport net.vidageek.mirror.dsl.Mirror;\n" +
+                        "\n" +
+                        "import net.vidageek.mirror.dsl.Mirror;\n" +
                         "\n" +
                         "public final class $Foo {\n" +
                         "\n" +
@@ -31,7 +32,7 @@ public class ClassGeneratorTest {
                         "    public Foo build() {\n" +
                         "        return inst;\n" +
                         "    }\n" +
-                        "}\n");
+                        "}");
 
     }
 
