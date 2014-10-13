@@ -1,6 +1,7 @@
 package io.aedifex.generation;
 
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.Writer;
@@ -19,8 +20,7 @@ public final class ClassWriter {
             writer.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
-            // TODO do something
+            processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, e.getMessage());
         }
     }
 
