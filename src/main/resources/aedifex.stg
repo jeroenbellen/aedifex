@@ -1,3 +1,10 @@
+builderMethod(field) ::= <<
+public <className> <field.name>(<field.type> <field.name>) {
+		new Mirror().on(inst).set().field("<field.name>").withValue(<field.name>);
+		return this;
+	\}
+>>
+
 builderClass(className, originalClassName, packageName, hasPackageName, fields) ::= <<
 <if(hasPackageName)>package <packageName>;<endif>
 
@@ -20,11 +27,6 @@ public final class <className> {
     public <originalClassName> build() {
         return inst;
     }
-<fields:{field|
-
-	public <className> <field.name>(<field.type> <field.name>) {
-		new Mirror().on(inst).set().field("<field.name>").withValue(<field.name>);
-		return this;
-	\}}>
+    <fields:{field|<builderMethod(field)>}>
 }
 >>

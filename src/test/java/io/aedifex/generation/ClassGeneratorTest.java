@@ -16,7 +16,9 @@ public class ClassGeneratorTest {
                 .isEqualTo("package bar;\n" +
                         "\n" +
                         "import net.vidageek.mirror.dsl.Mirror;\n" +
+                        "import javax.annotation.Generated;\n" +
                         "\n" +
+                        "@Generated(\"io.aedifex.processor.AedifexProcessor\")\n" +
                         "public final class $Foo {\n" +
                         "\n" +
                         "    private final Foo inst;\n" +
