@@ -19,5 +19,5 @@ Example:
 
 Will create a builder:
 
-    final Foo foo = Foo_.with().bar("Bar!").build();
+    final Foo foo = $Foo.with().bar("Bar!").build();
 

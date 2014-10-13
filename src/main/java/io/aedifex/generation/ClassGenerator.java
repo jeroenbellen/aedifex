@@ -37,7 +37,7 @@ public final class ClassGenerator {
                 "\n" +
                 "}\n");
 
-        st.add("className", classProperties.getClassName() + "_");
+        st.add("className", "$" + classProperties.getClassName());
         st.add("originalClassName", classProperties.getClassName());
         st.add("packageName", classProperties.getPackageName());
         st.add("hasPackageName", classProperties.getPackageName() != null && !classProperties.getPackageName().equals(""));

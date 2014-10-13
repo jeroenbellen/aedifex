@@ -16,16 +16,16 @@ public class ClassGeneratorTest {
                 .isEqualTo("package bar;\n" +
                         "\nimport net.vidageek.mirror.dsl.Mirror;\n" +
                         "\n" +
-                        "public final class Foo_ {\n" +
+                        "public final class $Foo {\n" +
                         "\n" +
                         "    private final Foo inst;\n" +
                         "\n" +
-                        "    private Foo_(){\n" +
+                        "    private $Foo(){\n" +
                         "        inst = new Mirror().on(Foo.class).invoke().constructor().withoutArgs();\n" +
                         "    }\n" +
                         "\n" +
-                        "    public static Foo_ with() {\n" +
-                        "        return new Foo_();\n" +
+                        "    public static $Foo with() {\n" +
+                        "        return new $Foo();\n" +
                         "    }\n" +
                         "\n" +
                         "    public Foo build() {\n" +

@@ -29,7 +29,7 @@ public final class ClassWriter {
         if (classProperties.getPackageName() != null && !classProperties.getPackageName().equals("")) {
             toReturn.append(classProperties.getPackageName()).append(".");
         }
-        toReturn.append(classProperties.getClassName()).append("_");
+        toReturn.append("$").append(classProperties.getClassName());
         return toReturn.toString();
     }
 }
