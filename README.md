@@ -1,5 +1,6 @@
 Aedifex
 ===================
+[![Build Status](https://travis-ci.org/jeroenbellen/aedifex.svg)](https://travis-ci.org/jeroenbellen/aedifex)
 
 > Auto-generate builders for POJOs.
 
