@@ -6,8 +6,8 @@ Aedifex
 Example:
 
 
-    import io.aedifex.annotation.Aedifex;  
-    import io.aedifex.annotation.AedifexIgnore;
+    import com.github.jeroenbellen.aedifex.annotation.Aedifex;
+    import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
 
     @Aedifex
     public class Foo {

@@ -1,4 +1,4 @@
-package io.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation;
 
 public class FieldProperty {
     private final String name;

@@ -1,11 +1,11 @@
-package io.aedifex.processor;
+package com.github.jeroenbellen.aedifex.processor;
 
 
-import io.aedifex.annotation.AedifexIgnore;
-import io.aedifex.generation.ClassGenerator;
-import io.aedifex.generation.ClassProperties;
-import io.aedifex.generation.ClassWriter;
-import io.aedifex.generation.FieldProperty;
+import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
+import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
+import com.github.jeroenbellen.aedifex.generation.ClassProperties;
+import com.github.jeroenbellen.aedifex.generation.ClassWriter;
+import com.github.jeroenbellen.aedifex.generation.FieldProperty;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@SupportedAnnotationTypes({"io.aedifex.annotation.Aedifex"})
+@SupportedAnnotationTypes({"com.github.jeroenbellen.aedifex.annotation.Aedifex"})
 public class AedifexProcessor extends AbstractProcessor {
 
     @Override
@@ -50,9 +50,6 @@ public class AedifexProcessor extends AbstractProcessor {
         TypeElement classElement = (TypeElement) e;
         PackageElement packageElement =
                 (PackageElement) classElement.getEnclosingElement();
-
-
-        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "Processing! " + e.toString());
 
         List<FieldProperty> fieldProperties = new ArrayList<FieldProperty>();
 

@@ -1,4 +1,4 @@
-package io.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;

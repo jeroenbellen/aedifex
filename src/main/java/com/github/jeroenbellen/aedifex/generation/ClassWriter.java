@@ -1,4 +1,4 @@
-package io.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.tools.Diagnostic;

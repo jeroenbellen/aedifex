@@ -11,7 +11,7 @@ builderClass(className, originalClassName, packageName, hasPackageName, fields) 
 import net.vidageek.mirror.dsl.Mirror;
 import javax.annotation.Generated;
 
-@Generated("io.aedifex.processor.AedifexProcessor")
+@Generated("com.github.jeroenbellen.aedifex.processor.AedifexProcessor")
 public final class <className> {
 
     private final <originalClassName> inst;

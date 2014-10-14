@@ -1,4 +1,4 @@
-package io.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation;
 
 import java.util.List;
 

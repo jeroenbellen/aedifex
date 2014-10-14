@@ -1,5 +1,8 @@
-package io.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation;
 
+import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
+import com.github.jeroenbellen.aedifex.generation.ClassProperties;
+import com.github.jeroenbellen.aedifex.generation.FieldProperty;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class ClassGeneratorTest {
                         "import net.vidageek.mirror.dsl.Mirror;\n" +
                         "import javax.annotation.Generated;\n" +
                         "\n" +
-                        "@Generated(\"io.aedifex.processor.AedifexProcessor\")\n" +
+                        "@Generated(\"com.github.jeroenbellen.aedifex.processor.AedifexProcessor\")\n" +
                         "public final class $Foo {\n" +
                         "\n" +
                         "    private final Foo inst;\n" +
