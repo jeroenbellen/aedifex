@@ -1,8 +1,5 @@
 package com.github.jeroenbellen.aedifex.generation;
 
-import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
-import com.github.jeroenbellen.aedifex.generation.ClassProperties;
-import com.github.jeroenbellen.aedifex.generation.FieldProperty;
 import org.junit.Test;
 
 import java.util.ArrayList;

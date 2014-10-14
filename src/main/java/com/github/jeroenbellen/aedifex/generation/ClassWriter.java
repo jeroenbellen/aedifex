@@ -26,10 +26,14 @@ public final class ClassWriter {
 
     private static String getFullClassName(ClassProperties classProperties) {
         final StringBuilder toReturn = new StringBuilder();
-        if (classProperties.getPackageName() != null && !classProperties.getPackageName().equals("")) {
+        if (hasPackage(classProperties)) {
             toReturn.append(classProperties.getPackageName()).append(".");
         }
         toReturn.append("$").append(classProperties.getClassName());
         return toReturn.toString();
+    }
+
+    private static boolean hasPackage(ClassProperties classProperties) {
+        return classProperties.getPackageName() != null && !classProperties.getPackageName().equals("");
     }
 }
