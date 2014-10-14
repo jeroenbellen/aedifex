@@ -12,7 +12,6 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
-import javax.tools.Diagnostic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +29,6 @@ public class AedifexProcessor extends AbstractProcessor {
         for (TypeElement te : annotations) {
             for (Element e : env.getElementsAnnotatedWith(te)) {
                 if (e.getKind() == ElementKind.CLASS) {
-
                     createClass(e);
                 }
             }
@@ -48,9 +46,20 @@ public class AedifexProcessor extends AbstractProcessor {
 
     private ClassProperties createClassProperties(Element e) {
         TypeElement classElement = (TypeElement) e;
+        return ClassProperties.of(
+                classElement.getSimpleName().toString(),
+                getPackageName(classElement),
+                findFieldProperties(e));
+    }
+
+    private String getPackageName(TypeElement classElement) {
         PackageElement packageElement =
                 (PackageElement) classElement.getEnclosingElement();
 
+        return packageElement.getQualifiedName().toString();
+    }
+
+    private List<FieldProperty> findFieldProperties(Element e) {
         List<FieldProperty> fieldProperties = new ArrayList<FieldProperty>();
 
         for (Element element : e.getEnclosedElements()) {
@@ -60,11 +69,7 @@ public class AedifexProcessor extends AbstractProcessor {
                 );
             }
         }
-
-        return ClassProperties.of(
-                classElement.getSimpleName().toString(),
-                packageElement.getQualifiedName().toString(),
-                fieldProperties);
+        return fieldProperties;
     }
 
     private boolean shouldCreateBuilderMethod(Element element) {
