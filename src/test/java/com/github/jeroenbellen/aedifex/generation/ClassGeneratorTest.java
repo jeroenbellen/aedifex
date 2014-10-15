@@ -10,7 +10,9 @@ public class ClassGeneratorTest {
 
     @Test
     public void generateClass() throws Exception {
-        final ClassProperties classProperties = ClassProperties.of("Foo", "bar", new ArrayList<FieldProperty>());
+        final ArrayList<FieldProperty> fields = new ArrayList<FieldProperty>();
+        fields.add(FieldProperty.of("bar", "java.lang.bar"));
+        final ClassProperties classProperties = ClassProperties.of("Foo", "bar", fields);
         final String generatedClass = ClassGenerator.generate(classProperties);
         assertThat(generatedClass)
                 .isEqualTo("package bar;\n" +
@@ -33,6 +35,11 @@ public class ClassGeneratorTest {
                         "\n" +
                         "    public Foo build() {\n" +
                         "        return inst;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    public $Foo bar(java.lang.bar bar) {\n" +
+                        "        new Mirror().on(inst).set().field(\"bar\").withValue(bar);\n" +
+                        "        return this;\n" +
                         "    }\n" +
                         "}");
 
