@@ -3,6 +3,7 @@ public <className> <field.name>(<field.type> <field.name>) {
     new Mirror().on(inst).set().field("<field.name>").withValue(<field.name>);
     return this;
 \}
+
 >>
 
 builderClass(className, originalClassName, packageName, hasPackageName, fields) ::= <<
