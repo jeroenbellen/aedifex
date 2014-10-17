@@ -4,15 +4,18 @@ import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
-public final class ClassGenerator {
+public class ClassGenerator {
 
     private static final STGroup ST_GROUP = new STGroupFile("aedifex.stg");
 
     private ClassGenerator() {
     }
 
+    public static ClassGenerator createInstance() {
+        return new ClassGenerator();
+    }
 
-    public static String generate(ClassProperties classProperties) {
+    public String generate(ClassProperties classProperties) {
         final ST st = getBuilderClassTemplate();
 
         st.add("className", "$" + classProperties.getClassName());

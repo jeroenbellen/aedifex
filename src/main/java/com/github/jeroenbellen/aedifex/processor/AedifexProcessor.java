@@ -19,6 +19,8 @@ import java.util.Set;
 @SupportedAnnotationTypes({"com.github.jeroenbellen.aedifex.annotation.Aedifex"})
 public class AedifexProcessor extends AbstractProcessor {
 
+    private final ClassGenerator classGenerator = ClassGenerator.createInstance();
+
     @Override
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latestSupported();
@@ -41,7 +43,7 @@ public class AedifexProcessor extends AbstractProcessor {
         ClassWriter.write(
                 processingEnv,
                 classProperties,
-                ClassGenerator.generate(classProperties));
+                classGenerator.generate(classProperties));
     }
 
     private ClassProperties createClassProperties(Element e) {

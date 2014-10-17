@@ -8,12 +8,14 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class ClassGeneratorTest {
 
+    private final ClassGenerator classGenerator = ClassGenerator.createInstance();
+
     @Test
     public void generateClassWithOneField() throws Exception {
         final ArrayList<FieldProperty> fields = new ArrayList<FieldProperty>();
         fields.add(FieldProperty.of("bar", "java.lang.bar"));
         final ClassProperties classProperties = ClassProperties.of("Foo", "bar", fields);
-        final String generatedClass = ClassGenerator.generate(classProperties);
+        final String generatedClass = classGenerator.generate(classProperties);
         assertThat(generatedClass)
                 .isEqualTo("package bar;\n" +
                         "\n" +
@@ -51,7 +53,7 @@ public class ClassGeneratorTest {
         fields.add(FieldProperty.of("bar", "java.lang.bar"));
         fields.add(FieldProperty.of("aze", "java.lang.bar"));
         final ClassProperties classProperties = ClassProperties.of("Foo", "bar", fields);
-        final String generatedClass = ClassGenerator.generate(classProperties);
+        final String generatedClass = classGenerator.generate(classProperties);
         assertThat(generatedClass)
                 .isEqualTo("package bar;\n" +
                         "\n" +
@@ -90,14 +92,14 @@ public class ClassGeneratorTest {
     @Test
     public void generateClassWhenPackageIsNull() throws Exception {
         final ClassProperties classProperties = ClassProperties.of("Foo", null, new ArrayList<FieldProperty>());
-        final String generatedClass = ClassGenerator.generate(classProperties);
+        final String generatedClass = classGenerator.generate(classProperties);
         assertThat(generatedClass).doesNotContain("package");
     }
 
     @Test
     public void generateClassWhenPackageIsEmpty() throws Exception {
         final ClassProperties classProperties = ClassProperties.of("Foo", "", new ArrayList<FieldProperty>());
-        final String generatedClass = ClassGenerator.generate(classProperties);
+        final String generatedClass = classGenerator.generate(classProperties);
         assertThat(generatedClass).doesNotContain("package");
     }
 }
