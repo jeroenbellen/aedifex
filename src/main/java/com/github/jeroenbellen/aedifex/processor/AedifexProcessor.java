@@ -20,6 +20,7 @@ import java.util.Set;
 public class AedifexProcessor extends AbstractProcessor {
 
     private final ClassGenerator classGenerator = ClassGenerator.createInstance();
+    private final ClassWriter classWriter = ClassWriter.createInstance();
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
@@ -40,7 +41,7 @@ public class AedifexProcessor extends AbstractProcessor {
 
     public void createClass(Element e) {
         final ClassProperties classProperties = createClassProperties(e);
-        ClassWriter.write(
+        classWriter.write(
                 processingEnv,
                 classProperties,
                 classGenerator.generate(classProperties));

@@ -6,15 +6,19 @@ import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.Writer;
 
-public final class ClassWriter {
+public class ClassWriter {
 
     private ClassWriter() {
     }
 
-    public static void write(ProcessingEnvironment processingEnvironment, ClassProperties classProperties, String source) {
+    public static ClassWriter createInstance() {
+        return new ClassWriter();
+    }
+
+    public void write(ProcessingEnvironment processingEnvironment, ClassProperties classProperties, String source) {
         try {
             JavaFileObject jfo = processingEnvironment.getFiler().createSourceFile(
-                    getFullClassName(classProperties));
+                    classProperties.getFullyClassifiedClassName());
             final Writer writer = jfo.openWriter();
             writer.write(source);
             writer.close();
@@ -24,16 +28,16 @@ public final class ClassWriter {
         }
     }
 
-    private static String getFullClassName(ClassProperties classProperties) {
+    private String getFullClassName(ClassProperties classProperties) {
         final StringBuilder toReturn = new StringBuilder();
         if (hasPackage(classProperties)) {
             toReturn.append(classProperties.getPackageName()).append(".");
         }
-        toReturn.append("$").append(classProperties.getClassName());
+        toReturn.append("$").append(classProperties.getOriginalClassName());
         return toReturn.toString();
     }
 
-    private static boolean hasPackage(ClassProperties classProperties) {
+    private boolean hasPackage(ClassProperties classProperties) {
         return classProperties.getPackageName() != null && !classProperties.getPackageName().equals("");
     }
 }
