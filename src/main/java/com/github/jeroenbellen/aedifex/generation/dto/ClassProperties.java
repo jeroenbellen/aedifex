@@ -1,4 +1,4 @@
-package com.github.jeroenbellen.aedifex.generation;
+package com.github.jeroenbellen.aedifex.generation.dto;
 
 import java.util.List;
 

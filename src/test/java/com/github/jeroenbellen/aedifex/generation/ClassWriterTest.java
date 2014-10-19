@@ -1,5 +1,6 @@
 package com.github.jeroenbellen.aedifex.generation;
 
+import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

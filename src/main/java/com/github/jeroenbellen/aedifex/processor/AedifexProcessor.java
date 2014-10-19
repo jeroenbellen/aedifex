@@ -3,9 +3,9 @@ package com.github.jeroenbellen.aedifex.processor;
 
 import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
 import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
-import com.github.jeroenbellen.aedifex.generation.ClassProperties;
+import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
 import com.github.jeroenbellen.aedifex.generation.ClassWriter;
-import com.github.jeroenbellen.aedifex.generation.FieldProperty;
+import com.github.jeroenbellen.aedifex.generation.dto.FieldProperty;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
