@@ -18,18 +18,14 @@ public class ClassGenerator {
     public String generate(ClassProperties classProperties) {
         final ST st = getBuilderClassTemplate();
 
-        st.add("className", "$" + classProperties.getOriginalClassName());
+        st.add("className", classProperties.getClassName());
         st.add("originalClassName", classProperties.getOriginalClassName());
         st.add("packageName", classProperties.getPackageName());
-        st.add("hasPackageName", hasPackage(classProperties));
+        st.add("hasPackageName", classProperties.hasPackage());
         st.add("fields", classProperties.getFields());
 
         return st.render();
 
-    }
-
-    private static boolean hasPackage(ClassProperties classProperties) {
-        return classProperties.getPackageName() != null && !classProperties.getPackageName().equals("");
     }
 
     private static ST getBuilderClassTemplate() {

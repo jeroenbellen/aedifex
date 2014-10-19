@@ -26,6 +26,10 @@ public class ClassProperties {
         return new ClassProperties(className, packageName, fields);
     }
 
+    public boolean hasPackage() {
+        return packageName != null && !"".equals(packageName);
+    }
+
     public String getOriginalClassName() {
         return originalClassName;
     }
