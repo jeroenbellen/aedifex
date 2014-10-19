@@ -30,16 +30,4 @@ public class ClassWriter {
         }
     }
 
-    private String getFullClassName(ClassProperties classProperties) {
-        final StringBuilder toReturn = new StringBuilder();
-        if (hasPackage(classProperties)) {
-            toReturn.append(classProperties.getPackageName()).append(".");
-        }
-        toReturn.append("$").append(classProperties.getOriginalClassName());
-        return toReturn.toString();
-    }
-
-    private boolean hasPackage(ClassProperties classProperties) {
-        return classProperties.getPackageName() != null && !classProperties.getPackageName().equals("");
-    }
 }

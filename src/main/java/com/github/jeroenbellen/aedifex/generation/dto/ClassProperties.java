@@ -8,6 +8,7 @@ public class ClassProperties {
     private final String className;
     private final String fullyClassifiedClassName;
     private final String packageName;
+    private final boolean hasPackage;
     private final List<FieldProperty> fields;
 
     private ClassProperties(String originalClassName, String packageName, List<FieldProperty> fields) {
@@ -15,8 +16,9 @@ public class ClassProperties {
         this.packageName = packageName;
         this.fields = fields;
         this.className = "$" + originalClassName;
-        if (packageName != null && !"".equals(packageName)) {
-            this.fullyClassifiedClassName = packageName + className;
+        this.hasPackage = packageName != null && !"".equals(packageName);
+        if (hasPackage) {
+            this.fullyClassifiedClassName = packageName + "." + className;
         } else {
             this.fullyClassifiedClassName = className;
         }
@@ -27,7 +29,7 @@ public class ClassProperties {
     }
 
     public boolean hasPackage() {
-        return packageName != null && !"".equals(packageName);
+        return hasPackage;
     }
 
     public String getOriginalClassName() {

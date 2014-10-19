@@ -1,0 +1,20 @@
+package com.github.jeroenbellen.aedifex.generation.dto;
+
+import org.junit.Test;
+
+import static org.fest.assertions.Assertions.assertThat;
+
+public class FieldPropertyTest {
+
+    @Test
+    public void correctMapping() throws Exception {
+        final String name = "name";
+        final String type = "type";
+
+        final FieldProperty result = FieldProperty.of(name, type);
+
+        assertThat(result.getName()).isSameAs(name);
+        assertThat(result.getType()).isSameAs(type);
+
+    }
+}
