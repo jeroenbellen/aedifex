@@ -1,17 +1,19 @@
 package com.github.jeroenbellen.aedifex.processor;
 
 
-import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
 import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
 import com.github.jeroenbellen.aedifex.generation.ClassWriter;
+import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
 import com.github.jeroenbellen.aedifex.generation.dto.FieldProperty;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.*;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.PackageElement;
+import javax.lang.model.element.TypeElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class AedifexProcessor extends AbstractProcessor {
 
     private final ClassGenerator classGenerator = ClassGenerator.createInstance();
     private final ClassWriter classWriter = ClassWriter.createInstance();
+    private final FieldAnalyser fieldAnalyser = FieldAnalyser.instance();
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
@@ -77,12 +80,8 @@ public class AedifexProcessor extends AbstractProcessor {
 
     private boolean shouldCreateBuilderMethod(Element element) {
         return element.getKind().isField()
-                && !element.getModifiers().contains(Modifier.STATIC)
-                && doesNotHaveIgnoreAnnotation(element);
+                && fieldAnalyser.isValidForBuilder(element);
     }
 
-    private boolean doesNotHaveIgnoreAnnotation(Element element) {
-        return element.getAnnotation(AedifexIgnore.class) == null;
-    }
 }
 
