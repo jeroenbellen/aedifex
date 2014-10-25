@@ -2,8 +2,6 @@ package com.github.jeroenbellen.aedifex.processor;
 
 
 import com.github.jeroenbellen.aedifex.AedifexFactory;
-import com.github.jeroenbellen.aedifex.generation.ClassGenerator;
-import com.github.jeroenbellen.aedifex.generation.ClassWriter;
 import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -18,8 +16,6 @@ import java.util.Set;
 @SupportedAnnotationTypes({"com.github.jeroenbellen.aedifex.annotation.Aedifex"})
 public class AedifexProcessor extends AbstractProcessor {
 
-    private final ClassGenerator classGenerator = ClassGenerator.createInstance();
-    private final ClassWriter classWriter = ClassWriter.createInstance();
     private final AedifexFactory aedifexFactory = AedifexFactory.instance();
 
     @Override
@@ -44,10 +40,10 @@ public class AedifexProcessor extends AbstractProcessor {
 
         final ClassProperties classProperties = aedifexFactory.getClassPropertiesBuilder().build(typeElement);
 
-        classWriter.write(
+        aedifexFactory.getClassWriter().write(
                 processingEnv,
                 classProperties,
-                classGenerator.generate(classProperties));
+                aedifexFactory.getClassGenerator().generate(classProperties));
     }
 
 }
