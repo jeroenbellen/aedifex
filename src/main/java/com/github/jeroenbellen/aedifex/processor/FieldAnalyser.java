@@ -4,6 +4,7 @@ import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
+import java.util.HashSet;
 import java.util.Set;
 
 public class FieldAnalyser {
@@ -20,7 +21,7 @@ public class FieldAnalyser {
             return false;
         }
 
-        final Set<Modifier> modifiers = element.getModifiers();
+        final Set<Modifier> modifiers = new HashSet<Modifier>(element.getModifiers());
         removeValidModifiers(modifiers);
 
         return modifiers.size() == 0;

@@ -2,7 +2,7 @@ package com.github.jeroenbellen.aedifex.generation.dto;
 
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 public class FieldPropertyTest {
 
