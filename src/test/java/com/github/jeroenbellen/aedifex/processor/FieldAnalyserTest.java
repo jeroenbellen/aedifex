@@ -1,7 +1,6 @@
 package com.github.jeroenbellen.aedifex.processor;
 
 import com.github.jeroenbellen.aedifex.annotation.AedifexIgnore;
-import com.sun.javafx.collections.UnmodifiableListSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -32,7 +28,8 @@ public class FieldAnalyserTest {
     private List<Modifier> allowedModifiers;
 
     private void modifiers(Modifier... modifier) {
-        final Set<Modifier> modifiers = new UnmodifiableListSet<Modifier>(Arrays.asList(modifier));
+
+        final Set<Modifier> modifiers = Collections.unmodifiableSet(new HashSet<Modifier>(Arrays.asList(modifier)));
         when(element.getModifiers()).thenReturn(modifiers);
     }
 
