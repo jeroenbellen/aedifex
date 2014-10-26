@@ -37,7 +37,6 @@ public class AedifexProcessor extends AbstractProcessor {
 
     public void createClass(Element e) {
         final TypeElement typeElement = (TypeElement) e;
-
         final ClassProperties classProperties = aedifexFactory.getClassPropertiesBuilder().build(typeElement);
 
         aedifexFactory.getClassWriter().write(
