@@ -1,7 +1,7 @@
 package com.github.jeroenbellen.aedifex.generation;
 
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
-import com.github.jeroenbellen.aedifex.generation.dto.FieldProperty;
+import com.github.jeroenbellen.aedifex.dto.ClassProperties;
+import com.github.jeroenbellen.aedifex.dto.FieldProperty;
 import org.junit.Test;
 
 import java.util.ArrayList;

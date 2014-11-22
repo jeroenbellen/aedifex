@@ -1,6 +1,6 @@
 package com.github.jeroenbellen.aedifex.generation;
 
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
+import com.github.jeroenbellen.aedifex.dto.ClassProperties;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;

@@ -1,8 +1,8 @@
 package com.github.jeroenbellen.aedifex.processor;
 
 import com.github.jeroenbellen.aedifex.AedifexFactory;
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
-import com.github.jeroenbellen.aedifex.generation.dto.FieldProperty;
+import com.github.jeroenbellen.aedifex.dto.ClassProperties;
+import com.github.jeroenbellen.aedifex.dto.FieldProperty;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

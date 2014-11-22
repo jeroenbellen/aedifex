@@ -1,5 +1,6 @@
 package com.github.jeroenbellen.aedifex.generation.dto;
 
+import com.github.jeroenbellen.aedifex.dto.FieldProperty;
 import org.junit.Test;
 
 import static org.fest.assertions.api.Assertions.assertThat;

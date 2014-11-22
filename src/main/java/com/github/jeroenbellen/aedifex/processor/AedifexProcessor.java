@@ -2,7 +2,7 @@ package com.github.jeroenbellen.aedifex.processor;
 
 
 import com.github.jeroenbellen.aedifex.AedifexFactory;
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
+import com.github.jeroenbellen.aedifex.dto.ClassProperties;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;

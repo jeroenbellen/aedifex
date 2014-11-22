@@ -1,6 +1,6 @@
 package com.github.jeroenbellen.aedifex.generation;
 
-import com.github.jeroenbellen.aedifex.generation.dto.ClassProperties;
+import com.github.jeroenbellen.aedifex.dto.ClassProperties;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.tools.Diagnostic;
